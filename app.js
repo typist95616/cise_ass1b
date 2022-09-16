@@ -10,6 +10,7 @@ if(process.env.NODE_ENV === "production"){
     app.get('*', (req, res) => {
         req.sendFile(path.resolve(_dirname, 'build', 'index.html'));
     })
+    //hello
 }
 
 app.listen(port, (err) => {
