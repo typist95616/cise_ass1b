@@ -33,7 +33,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-      <Route path='/' element = {TestPage} />
+        <Route path='/' element = {TestPage} />
       </BrowserRouter>
     );
   }
