@@ -3,8 +3,10 @@ const app = express();
 
 const path = require('path');
 
+app.use(express.json());
+
 const port = process.env.PORT || 5051;
-app.use(express.static(path.join(__dirname, '/build')));
+app.use(express.static(path.join(__dirname, '/client/build')));
 if(process.env.NODE_ENV === "production"){
     // app.get('/', (req, res) => {
     //     req.sendFile(path.resolve(_dirname, 'build', 'index.html'));
