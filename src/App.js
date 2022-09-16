@@ -8,7 +8,6 @@ import {
   useParams
 } from "react-router-dom";
 import './App.css';
-import history from './components/history';
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -30,8 +29,6 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Routes history = {history}>
-        </Routes>
       </BrowserRouter>
     );
   }
