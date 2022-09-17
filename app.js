@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const path = require('path');
-const connectDB = require('./db.js');
+const connectDB = require('./config/db.js');
 
 
 app.use(express.json());
