@@ -33,7 +33,9 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Route path='/' element = {TestPage} />
+        <Routes>
+          <Route path='/' element = {<TestPage />} /> 
+        </Routes>
       </BrowserRouter>
     );
   }

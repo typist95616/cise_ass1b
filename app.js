@@ -6,10 +6,14 @@ const path = require('path');
 app.use(express.json());
 
 const port = process.env.PORT || 5051;
-app.use(express.static(path.join(__dirname, '/client/build')));
 if(process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, '/build')));
     app.get('*', (req, res) => {
         req.sendFile(path.resolve(_dirname, 'build', 'index.html'));
+    })
+}else{
+    app.get("/test", (req,res)=>{
+        res.send("API running")
     })
 }
 
