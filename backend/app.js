@@ -2,8 +2,12 @@ const express = require('express');
 const app = express();
 
 const path = require('path');
+const connectDB = require('./db.js');
+
 
 app.use(express.json());
+
+connectDB();
 
 const port = process.env.PORT || 5051;
 if(process.env.NODE_ENV === "production"){
