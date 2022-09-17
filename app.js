@@ -11,6 +11,9 @@ if(process.env.NODE_ENV === "production"){
     app.get('*', (req, res) => {
         req.sendFile(path.resolve(_dirname, 'build', 'index.html'));
     })
+    app.get("/APITesting", (req,res)=>{
+        res.send("API running")
+    })
 }else{
     app.get("/test", (req,res)=>{
         res.send("API running")
