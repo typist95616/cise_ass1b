@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import './Styles.css';
+import './NavBar.css';
+import '../Styles.css';
 
 class NavBar extends Component{
     render(){
         return(
             <nav>
-                <div>
-                    <h1>Moderation Page</h1>
+                <div className='nav-title'>
+                    <h2>SPEED Articles System</h2>
+                </div>
+                <div className='nav-content'>
                     <ul>
                         <li>Suggest Articles</li>
                         <li>Moderate Articles</li>

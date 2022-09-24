@@ -7,10 +7,10 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
-import './components/Styles.css';
+import './components/NavBar/NavBar.css';
 
-import Test from './components/Test';
-import ModerationList from './components/ModerationListPage';
+import ModerationList from './pages/ModerationListPage/ModerationListPage';
+import NavBar from './components/NavBar/NavBar';
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -28,15 +28,14 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-const TestPage = withRouter(Test);
 const ModerationListPage = withRouter(ModerationList);
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <NavBar/>
         <Routes>
-          <Route path='/' element = {<TestPage />} /> 
           <Route path="/ModerationList" element = {<ModerationListPage />} />
         </Routes>
       </BrowserRouter>
