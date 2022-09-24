@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import NavBar from './NavBar';
+import './ModerationListPage.css'
+import '../../components/Styles.css'
 
 class ModerationListPage extends Component{
     render(){
         return(
-            <NavBar/>
+            <div>
+                <div className='moderationList'>hi</div>
+            </div>
         )
     }
 }

@@ -7,11 +7,11 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
-import './components/Styles.css';
 
-import Test from './components/Test';
-import ModerationList from './components/ModerationListPage';
+import './components/NavBar/NavBar.css';
 import AnalyseListPage from './components/AnalyseListPage';
+import ModerationList from './pages/ModerationListPage/ModerationListPage';
+import NavBar from './components/NavBar/NavBar';
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -29,15 +29,14 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-const TestPage = withRouter(Test);
 const ModerationListPage = withRouter(ModerationList);
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <NavBar/>
         <Routes>
-          <Route path='/' element = {<TestPage />} /> 
           <Route path="/ModerationList" element = {<ModerationListPage />} />
           <Route path="/AnalyseList" element = {<AnalyseListPage />}/>
         </Routes>
