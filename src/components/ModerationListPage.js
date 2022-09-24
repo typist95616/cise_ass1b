@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import '../App.css';
+import NavBar from './NavBar';
 
-class Test extends Component{
+class ModerationListPage extends Component{
     render(){
         return(
-            <div>
-                <h1>
-                    Hello
-                </h1>
-            </div>
+            <NavBar/>
         )
     }
 }
 
-export default Test;
+export default ModerationListPage;

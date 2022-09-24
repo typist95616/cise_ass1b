@@ -7,9 +7,10 @@ import {
   useNavigate,
   useParams
 } from "react-router-dom";
-import './App.css';
+import './components/Styles.css';
 
 import Test from './components/Test';
+import ModerationList from './components/ModerationListPage';
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -28,6 +29,7 @@ function withRouter(Component) {
 }
 
 const TestPage = withRouter(Test);
+const ModerationListPage = withRouter(ModerationList);
 
 class App extends Component {
   render() {
@@ -35,6 +37,7 @@ class App extends Component {
       <BrowserRouter>
         <Routes>
           <Route path='/' element = {<TestPage />} /> 
+          <Route path="/ModerationList" element = {<ModerationListPage />} />
         </Routes>
       </BrowserRouter>
     );

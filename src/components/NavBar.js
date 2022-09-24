@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import '../App.css';
+import './Styles.css';
 
-class Test extends Component{
+class NavBar extends Component{
     render(){
         return(
-            <div>
-                <h1>
-                    Hello
-                </h1>
-            </div>
+            <nav>
+                <div>
+                    <h1>Moderation Page</h1>
+                    <ul>
+                        <li>Suggest Articles</li>
+                        <li>Moderate Articles</li>
+                    </ul>
+                </div>
+            </nav>
         )
     }
 }
 
-export default Test;
+export default NavBar;
