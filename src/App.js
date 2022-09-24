@@ -11,6 +11,7 @@ import './components/Styles.css';
 
 import Test from './components/Test';
 import ModerationList from './components/ModerationListPage';
+import AnalyseListPage from './components/AnalyseListPage';
 
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
@@ -38,6 +39,7 @@ class App extends Component {
         <Routes>
           <Route path='/' element = {<TestPage />} /> 
           <Route path="/ModerationList" element = {<ModerationListPage />} />
+          <Route path="/AnalyseList" element = {<AnalyseListPage />}/>
         </Routes>
       </BrowserRouter>
     );

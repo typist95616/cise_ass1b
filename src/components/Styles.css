@@ -5,3 +5,8 @@ nav{
     justify-content: space-between;
     align-items: center;
 }
+
+.list-title{
+    color: black;
+    background-color: blue;
+}
