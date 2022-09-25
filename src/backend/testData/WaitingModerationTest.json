@@ -1,0 +1,31 @@
+{
+    "moderationList": 
+    [
+        {
+            "title": "Harry Potter",
+            "authors": ["J. K. Rowling"],
+            "journal": "3",
+            "yearOfPublication": "1995",
+            "volume": 1,
+            "pages": 398,
+            "DOI": 1231329899
+        },
+        {
+            "title": "HP",
+            "authors": ["Mark"],
+            "journal": 3,
+            "yearOfPublication": 123,
+            "volume": 2,
+            "pages": 89894,
+            "DOI": 1231329899
+        },{
+            "title": "HPhp",
+            "authors": ["ggMark"],
+            "journal": 3,
+            "yearOfPublication": 123,
+            "volume": 2,
+            "pages": 89894,
+            "DOI": 1231329899
+        }
+    ]
+}
