@@ -36,7 +36,7 @@ class App extends Component {
       <BrowserRouter>
         <NavBar/>
         <Routes>
-          <Route path="/ModerationList" element = {<ModerationListPage />} />
+          <Route path="/moderationList" element = {<ModerationListPage />} />
         </Routes>
       </BrowserRouter>
     );

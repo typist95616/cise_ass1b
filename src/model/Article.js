@@ -1,11 +1,19 @@
-class Article{
-    constructor(title, authors, journal, yearOfPublication, volume, pages, DOI){
-        this.title = title;
-        this.authors = authors;
-        this.journal = journal;
-        this.yearOfPublication = yearOfPublication;
-        this.volume = volume;
-        this.pages = pages;
-        this.DOI = DOI;
-    }
-}
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const ArticleSchema = new Schema({
+    id : Number,
+    title : String,
+    authors : [String],
+    journal : String,
+    yearOfPublication : Number, 
+    volume : Number,
+    pages : Number,
+    DOI : Number,
+    claims : String,
+    SEpractice : String
+});
+
+const Article = mongoose.model('Article', ArticleSchema);
+module.exports = Article;
