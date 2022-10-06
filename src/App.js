@@ -1,6 +1,6 @@
 import './App.css';
-import Signup from "./components/Signup"
-import Login from "./components/Login"
+import Signup from "./pages/Signup"
+import Login from "./pages/Login"
 import {Container} from 'react-bootstrap'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
