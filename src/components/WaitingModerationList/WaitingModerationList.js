@@ -52,9 +52,8 @@ class WaitingModerationList extends Component{
     componentDidMount() {
         axios
           .get('http://localhost:5001/moderationList/articlesList')
-          .then(this.setState({isLoading: true}))
+          .then(this.setState({isLoading: true, label: false}))
           .then(res => {
-            console.log(res.data);
             this.setState({rows: res.data});
           })
           .then(this.setState({isLoading: false}))
@@ -64,7 +63,7 @@ class WaitingModerationList extends Component{
       };
 
     render(){
-        const {isLoading, rows} = this.state;
+        const {isLoading, rows, label} = this.state;
         if(isLoading){
             return(
                 <div>It's just loading</div>
@@ -77,7 +76,7 @@ class WaitingModerationList extends Component{
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                     <TableRow>
-                        <TableCell>Title</TableCell>
+                        <TableCell align="center">Title</TableCell>
                         <TableCell align="center">Authors</TableCell>
                         <TableCell align="center">Journal</TableCell>
                         <TableCell align="center">Year Of Publication</TableCell>
@@ -95,8 +94,9 @@ class WaitingModerationList extends Component{
                         key={row.title}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                        <TableCell component="th" scope="row">
-                            {row.title}<TagInput name="Existed" />
+                        <TableCell align="center" component="th" scope="row">
+                            {row.title}
+                            <TagInput name="Existed" />
                         </TableCell>
                         <TableCell align="center">{rednerAuthors(row.authors)}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
@@ -128,4 +128,16 @@ function rednerAuthors(authors){
     return output;
 }
 
+function returnTag(title){
+    axios
+    .get('http://localhost:5001/moderationList/checkExist/'+title)
+    .then(res => {
+        if(res.data){
+            console.log(res.data);
+            return <TagInput name="Existed"/>
+        }
+    })
+}
+
 export default WaitingModerationList;
+

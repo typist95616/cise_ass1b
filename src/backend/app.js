@@ -2,14 +2,13 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const connectDB = require('./config/db');
-const moderationList = require('./testData/WaitingModerationTest.json');
 const client = require('./config/dbClient');
 
 
 const database = client.db("SPEED");
 const activePaper = database.collection("Active Paper");
 const processPaper = database.collection("Process Paper");
-const rejectPaper = database.collection("Reject Paper");
+const rejectPaper = database.collection("Rejected Paper");
 
 //For testing localhost
 const cors = require('cors');
@@ -37,16 +36,12 @@ if(process.env.NODE_ENV === "production"){
         res.setHeader("Content-Type", "application/json");
         activePaper.find().toArray()
         .then(result=>{
-            console.log(result);
             res.send(JSON.stringify(result));
         })
         .catch(error=>{
             console.log(error);
             res.end();
         })
-    })
-    app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     })
     app.post('/moderationList/insertArticle', (req, res)=>{
         const doc = req.body;
@@ -59,6 +54,27 @@ if(process.env.NODE_ENV === "production"){
         })
         res.end();
     })
+    app.get('/moderationList/checkExist/:title', (req,res)=>{
+        const title = req.params.title;
+        rejectPaper.findOne({
+            title: title
+        })
+        .then((output)=>{
+            if(output != null){
+                res.send(true);
+            }else{
+                res.send(false);
+            }
+            res.end();
+        })
+        .catch((error)=>{
+            console.log(error);
+            res.end();
+        })
+    })
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+        })
 }else{
     app.get("/test", (req,res)=>{
         res.send("API running");

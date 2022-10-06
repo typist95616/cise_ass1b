@@ -1,8 +1,10 @@
 .tag-item{
-    background-color: rgb(218, 216, 216);
+    background-color: rgb(247, 116, 116);
     display: inline-block;
     padding: .5em .75em;
     border-radius: 20px;
+    color:rgb(255, 245, 245);
+    font-weight: bold;
 }
 
 .tags-item-container{
