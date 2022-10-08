@@ -7,6 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button } from '@mui/material';
+import './AnalyseListPage.css';
+import {Link} from "react-router-dom";
+
+
 
 function createData(
     name,
@@ -26,12 +31,16 @@ const rows = [
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
+const baby = {
+    name: 'Walter'
+}
+
 class AnalyseListPage extends Component{
     render(){
         return(
             <div>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableContainer component={Paper} sx={{ width: 0.9, marginLeft: 9, marginRight: 9 }}>
+                    <Table sx={{ maxWidth: 0.9 }} aria-label="simple table">
                         <TableHead>
                         <TableRow>
                             <TableCell>Dessert (100g serving)</TableCell>
@@ -39,6 +48,7 @@ class AnalyseListPage extends Component{
                             <TableCell align="right">Fat&nbsp;(g)</TableCell>
                             <TableCell align="right">Carbs&nbsp;(g)</TableCell>
                             <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                            <TableCell align="right">To Analyse</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
@@ -54,6 +64,10 @@ class AnalyseListPage extends Component{
                             <TableCell align="right">{row.fat}</TableCell>
                             <TableCell align="right">{row.carbs}</TableCell>
                             <TableCell align="right">{row.protein}</TableCell>
+                            <div className='AnalyseButtuons'>
+                                <Button className='tableAnalyseButton' baby={baby}>Approve</ Button>
+                                <Button className='tableAnalyseButton' baby={baby}>Decline</ Button>
+                            </div>
                             </TableRow>
                         ))}
                         </TableBody>

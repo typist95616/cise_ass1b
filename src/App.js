@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import './components/NavBar/NavBar.css';
-import AnalyseListPage from './components/AnalyseListPage';
+import AnalyseListPage from './pages/AnalyseListPage/AnalyseListPage';
 import ModerationList from './pages/ModerationListPage/ModerationListPage';
 import NavBar from './components/NavBar/NavBar';
 

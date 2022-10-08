@@ -1,4 +1,16 @@
-/* nav{
+.tableAnalyseButton{
+    display: inline;
+    width: 50%;
+    text-align: right;
+    align-items: right;
+    color: black;
+}
+
+.AnalyseButtuons{
+    display: inline;
+}
+
+nav{
     background-color: #333;
     color: white;
     display: flex;
@@ -13,4 +25,4 @@
 
 body{
     background-color: greenyellow;
-} */
+}

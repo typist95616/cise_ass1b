@@ -32,3 +32,18 @@ app.listen(port, (err) => {
 app.get("/", (req, res) => {
     res.send("Hello")
 })
+
+app.get("getBook", (req, res) => {
+    const { MongoClient } = require("mongodb");
+    MongoClient = require('mongodb').MongoClient;
+    var url = "mongodb+srv://typist95616:Fung54321546@ciseass1b.dcb4ip8.mongodb.net/?retryWrites=true&w=majority";
+    MongoClient.connect(url, function(err, db){
+    if(err) throw err;
+    var dbo = db.db("SPEED");
+
+        dbo.collection("User").find({}).toArray(function(err, result){
+        if(err) throw err;
+        res.json({result});
+        });
+    });
+})
