@@ -15,8 +15,6 @@ import TagInput from '../Tag/Tag.js';
  
 const axios = require("axios");
 
-
-
 class WaitingModerationList extends Component{
 
     constructor(props){
@@ -27,7 +25,7 @@ class WaitingModerationList extends Component{
         }
     }
 
-    insertRecord(row){
+    approvePaper(row){
         var index = -1;
         var newRows = this.state.rows;
         for(var x = 0; x < this.state.rows.length; x++){
@@ -36,13 +34,36 @@ class WaitingModerationList extends Component{
             }
         }
         newRows.splice(index, 1);
-        this.sendRequest(row);
+        this.approvePaperRequest(row);
         this.setState({rows: newRows});
     }
 
-    sendRequest(row){
+    approvePaperRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:5001/moderationList/insertArticle");
+        xhr.open("POST", "http://localhost:5001/moderationList/approveArticle");
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        let data = JSON.stringify(row);
+        xhr.send(data);
+        alert("Article Approved");
+    }
+
+    rejectPaper(row){
+        var index = -1;
+        var newRows = this.state.rows;
+        for(var x = 0; x < this.state.rows.length; x++){
+            if(this.state.rows[x].id === row.id){
+                index = x;
+            }
+        }
+        newRows.splice(index, 1);
+        this.rejectPaperRequest(row);
+        this.setState({rows: newRows});
+    }
+
+    rejectPaperRequest(row){
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:5001/moderationList/rejectPaper");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -50,20 +71,20 @@ class WaitingModerationList extends Component{
     }
 
     componentDidMount() {
+        this.setState({isLoading:true});
         axios
           .get('http://localhost:5001/moderationList/articlesList')
-          .then(this.setState({isLoading: true, label: false}))
           .then(res => {
-            this.setState({rows: res.data});
-          })
-          .then(this.setState({isLoading: false}))
+            console.log(res.data)
+            this.setState({rows: res.data})})
+          .then(()=>{this.setState({isLoading: false})})
           .catch(err => {
             console.log(err);
           })
       };
 
     render(){
-        const {isLoading, rows, label} = this.state;
+        const {isLoading, rows} = this.state;
         if(isLoading){
             return(
                 <div>It's just loading</div>
@@ -91,12 +112,12 @@ class WaitingModerationList extends Component{
                     <TableBody>
                     {rows.map((row) => (
                         <TableRow
-                        key={row.title}
+                        key={row._id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                         <TableCell align="center" component="th" scope="row">
                             {row.title}
-                            <TagInput name="Existed" />
+                            {returnTag(row.existed)}
                         </TableCell>
                         <TableCell align="center">{rednerAuthors(row.authors)}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
@@ -107,8 +128,8 @@ class WaitingModerationList extends Component{
                         <TableCell align="center">{row.SEpractice}</TableCell>
                         <TableCell align="center">{row.claims}</TableCell>
                         <TableCell align="center">
-                            <StyledButton onClick={() => this.insertRecord(row)}>Approve</StyledButton>
-                            <StyledButton onClick={() => this.insertRecord(row)}>Decline</StyledButton>
+                            <StyledButton onClick={() => this.approvePaper(row)}>Approve</StyledButton>
+                            <StyledButton onClick={() => this.rejectPaper(row)}>Decline</StyledButton>
                         </TableCell>
                         </TableRow>
                     ))}
@@ -128,16 +149,10 @@ function rednerAuthors(authors){
     return output;
 }
 
-function returnTag(title){
-    axios
-    .get('http://localhost:5001/moderationList/checkExist/'+title)
-    .then(res => {
-        if(res.data){
-            console.log(res.data);
-            return <TagInput name="Existed"/>
-        }
-    })
+function returnTag(existed){
+    if(existed){
+        return <TagInput name="Existed"/>
+    }
 }
 
 export default WaitingModerationList;
-
