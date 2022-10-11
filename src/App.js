@@ -1,6 +1,7 @@
-import './App.css';
+import './App.css'
 import Signup from "./pages/Signup"
 import Login from "./pages/Login"
+import Search from "./pages/Search"
 import {Container} from 'react-bootstrap'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
@@ -12,7 +13,8 @@ function App() {
           <Router>
             <Routes>
               <Route path="/signup" element={<Signup/>}/>
-              <Route path="/" element={<Login/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/search" element={<Search/>}/>
             </Routes>
           </Router>
         </div>

@@ -1,0 +1,105 @@
+[
+    {
+        "id": 3,
+        "title": "It Ends with Us",
+        "authors": ["Colleen Hoover"],
+        "journal": "2",
+        "yearOfPublication": 1924,
+        "volume": 3,
+        "pages": 235,
+        "DOI": 1234567890,
+        "SEpractice": "practice_1",
+        "claim": "Agree"
+    },
+
+    {
+        "id": 4,
+        "title": "Verity",
+        "authors": ["Colleen Hoover"],
+        "journal": "2",
+        "yearOfPublication": 2018,
+        "volume": 3,
+        "pages": 2345,
+        "DOI": 1234567890,
+        "SEpractice": "practice_3",
+        "claim": "Agree"
+    },
+
+    {
+        "id": 5,
+        "title": "To kill a mockingbird",
+        "authors": ["Harper Lee"],
+        "journal": "2",
+        "yearOfPublication": 1960,
+        "volume": 4,
+        "pages": 672,
+        "DOI": 1234567890,
+        "SEpractice": "practice_1",
+        "claim": "Agree"
+    },
+
+    {
+        "id": 6,
+        "title": "The Great Gatsby",
+        "authors": ["F. Scott Fitzgerald"],
+        "journal": "4",
+        "yearOfPublication": 1925,
+        "volume": 6,
+        "pages": 1652,
+        "DOI": 1234567890,
+        "SEpractice": "practice_2",
+        "claim": "Agree"
+    },
+
+    {
+        "id": 7,
+        "title": "The Book Thief",
+        "authors": ["Markus Zusak"],
+        "journal": "1",
+        "yearOfPublication": 2005,
+        "volume": 7,
+        "pages": 331,
+        "DOI": 1234567890,
+        "SEpractice": "practice_4",
+        "claim": "Agree"
+    },
+
+    {
+        "id": 8,
+        "title": "Normal People",
+        "authors": ["Sally Rooney"],
+        "journal": "1",
+        "yearOfPublication": 2018,
+        "volume": 3,
+        "pages": 533,
+        "DOI": 1234567890,
+        "SEpractice": "practice_2",
+        "claim": "Agree"
+    },
+
+    {
+        "id": 9,
+        "title": "The Very Hungry Cat",
+        "authors": ["Eric Carle"],
+        "journal": "4",
+        "yearOfPublication": 1969,
+        "volume": 5,
+        "pages": 164,
+        "DOI": 1234567890,
+        "SEpractice": "practice_5",
+        "claim": "Agree"
+    },
+
+    {
+        "id": 10,
+        "title": "Pride and Prejudice",
+        "authors": ["Jane Austen"],
+        "journal": "2",
+        "yearOfPublication": 1999,
+        "volume": 3,
+        "pages": 625,
+        "DOI": 1234567890,
+        "SEpractice": "practice_2",
+        "claim": "Agree"
+    }
+]

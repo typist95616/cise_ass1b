@@ -1,17 +1,37 @@
-require('dotenv').config()
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose')
-const userRoutes = require('./routes/user')
+const path = require("path");
+const connectDB = require('./config/db');
+const client = require('./config/dbClient');
+const articleRoutes = require('./routes/Article');
 
-const path = require('path');
+//For testing localhost
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true, //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+app.use(express.json());
+
+connectDB();
 
 const port = process.env.PORT || 5051;
+console.log(process.env.NODE_ENV);
+
+app.use('/api', articleRoutes);
 
 if(process.env.NODE_ENV === "production"){
-    app.use(express.static('build'));
-    app.get('*', (req, res) => {
-        req.sendFile(path.resolve(_dirname, 'build', 'index.html'));
+    //Connect moderation
+    app.use(express.static(path.join(__dirname, '/build')));
+    const moderation = require('./moderation.js');
+    app.use(express.json({ extended: false }));
+    app.use('/moderationList', moderation);
+}else{
+    app.get("/test", (req,res)=>{
+        res.send("API running");
+        res.end();
     })
 }
 
@@ -23,18 +43,3 @@ app.listen(port, (err) => {
 app.get("/", (req, res) => {
     res.send("Hello")
 })
-
-// routes
-app.use('/api/user', userRoutes);
-
-// connect to db
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    // listen for requests
-    app.listen(process.env.PORT, () => {
-      console.log('connected to db & listening on port', process.env.PORT)
-    })
-  })
-  .catch((error) => {
-    console.log(error)
-  })
