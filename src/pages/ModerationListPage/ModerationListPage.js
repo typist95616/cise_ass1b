@@ -11,7 +11,7 @@ class ModerationListPage extends Component{
         return(
             <div>
                 <div className="title">
-                    <FontAwesomeIcon icon={faCode} /> Waiting Moderation Queue
+                    <FontAwesomeIcon icon={faCode} /> Waiting Moderation Page
                 </div>
                 <div className="WaitingList">
                     <WaitingList/>

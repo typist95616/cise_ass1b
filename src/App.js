@@ -9,7 +9,10 @@ import {
 } from "react-router-dom";
 import './components/NavBar/NavBar.css';
 
-import ModerationList from './pages/ModerationListPage/ModerationListPage';
+import ModerationListComponent from './pages/ModerationListPage/ModerationListPage';
+import RejectedArticlesComponent from './pages/ShowRejectedArticlesPage/ShowRejectedArticlesPage';
+import WaitingArticlesComponent from './pages/WaitingArticlesPage/WaitingArticlesPage';
+import ActiveArticlesListComponent from './pages/ArticlesPage/ArticlesPage';
 import NavBar from './components/NavBar/NavBar';
 
 function withRouter(Component) {
@@ -28,7 +31,10 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-const ModerationListPage = withRouter(ModerationList);
+const ModerationListPage = withRouter(ModerationListComponent);
+const RejectedArticlesPage = withRouter(RejectedArticlesComponent);
+const WaitingAriclesPage = withRouter(WaitingArticlesComponent);
+const ActiveArticlesPage = withRouter(ActiveArticlesListComponent);
 
 class App extends Component {
   render() {
@@ -36,7 +42,10 @@ class App extends Component {
       <BrowserRouter>
         <NavBar/>
         <Routes>
-          <Route path="/moderationList" element = {<ModerationListPage />} />
+          <Route path="/moderationArticlesPage" element = {<ModerationListPage />} />
+          <Route path="/rejectedArticlesPage" element = {<RejectedArticlesPage/>} />
+          <Route path="/waitingArticlesPage" element = {<WaitingAriclesPage/>}/>
+          <Route path="/activeArticlesPage" element={<ActiveArticlesPage/>}/>
         </Routes>
       </BrowserRouter>
     );
