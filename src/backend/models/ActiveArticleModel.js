@@ -15,5 +15,5 @@ const ArticleSchema = new Schema({
     SEpractice : String
 });
 
-const Article = mongoose.model('Article', ArticleSchema, 'Test Active Paper');
+const Article = mongoose.model('Article', ArticleSchema, 'Active Paper');
 module.exports = Article;
