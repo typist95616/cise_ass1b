@@ -20,10 +20,10 @@ const tablecolumns = [
       accessor: 'DOI'
     },,{
       Header: 'Claims',
-      accessor: 'claims'
+      accessor: 'claim'
     },{
       Header: 'SE Practice',
-      accessor: 'SEPractice'
+      accessor: 'SEpractice'
     }
   ]
   module.exports = tablecolumns

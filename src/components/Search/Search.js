@@ -3,13 +3,11 @@ import './Search.css';
 
 const Search = ({ setSearch }) => {
     return (
-        <div className="search">
-            <input type="text"
-                placeHolder="Search"
+        <input type="text"
+                className="searchBar"
+                placeholder="Search"
                 onChange={({ currentTarget: input }) => setSearch(input.value)}
                 />
-            <div className="searchIcon"></div>
-        </div>
     )
 }
 

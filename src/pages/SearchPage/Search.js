@@ -1,12 +1,10 @@
 import React from 'react';
-import Styles from "../components/Search/TableStyle.js";
-import Table from "../components/Search/Table.js";
-import tableColumns from "../components/Search/TableColumns";
-import Search from "../components/Search/Search";
+import Table from "../../components/Search/Table.js";
+import tableColumns from "../../components/Search/TableColumns.js";
+import Search from "../../components/Search/Search.js";
 import "./Search.css"
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import mockData from '../backend/testData/AcceptedArticlesTest.json';
 
 const base_url = process.env.REACT_APP_API_URL;
 
@@ -16,9 +14,6 @@ function SearchPage() {
     const [filterPractice, setFilterPractice] = useState([]);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
-    let responseArrayOne = [];
-    const responseArrayTwo = "";
-    let array = [];
 
     useEffect(() => {
         const getAllArticles = async () => {
@@ -36,8 +31,13 @@ function SearchPage() {
     }, [sort, filterPractice, page, search]);
 
     return (
-        <div className="container">
-          <Table columns={tableColumns} data={obj.articles ? obj.articles : []}/>
+        <div>
+            <div className="head">
+                <Search setSearch={(search) => setSearch(search)}/>
+            </div>
+            <div className="body">
+                <Table columns={tableColumns} data={obj.articles ? obj.articles : []}/>
+            </div>
         </div>
       )
 }
