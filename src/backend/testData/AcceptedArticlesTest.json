@@ -8,7 +8,7 @@
         "volume": 3,
         "pages": 235,
         "DOI": 1234567890,
-        "SEpractice": "practice_1",
+        "SEpractice": ["practice_1"],
         "claim": "Agree",
         "rating": 0
     },
@@ -22,7 +22,7 @@
         "volume": 3,
         "pages": 2345,
         "DOI": 1234567890,
-        "SEpractice": "practice_3",
+        "SEpractice": ["practice_3"],
         "claim": "Agree",
         "rating": 0
     },
@@ -36,7 +36,7 @@
         "volume": 4,
         "pages": 672,
         "DOI": 1234567890,
-        "SEpractice": "practice_1",
+        "SEpractice": ["practice_1", "practice_2"],
         "claim": "Agree",
         "rating": 0
     },
@@ -50,7 +50,7 @@
         "volume": 6,
         "pages": 1652,
         "DOI": 1234567890,
-        "SEpractice": "practice_2",
+        "SEpractice": ["practice_2", "practice_5"],
         "claim": "Agree",
         "rating": 0
     },
@@ -64,7 +64,7 @@
         "volume": 7,
         "pages": 331,
         "DOI": 1234567890,
-        "SEpractice": "practice_4",
+        "SEpractice": ["practice_4"],
         "claim": "Agree",
         "rating": 0
     },
@@ -78,7 +78,7 @@
         "volume": 3,
         "pages": 533,
         "DOI": 1234567890,
-        "SEpractice": "practice_2",
+        "SEpractice": ["practice_2", "practice_6"],
         "claim": "Agree",
         "rating": 0
     },
@@ -92,7 +92,7 @@
         "volume": 5,
         "pages": 164,
         "DOI": 1234567890,
-        "SEpractice": "practice_5",
+        "SEpractice": ["practice_5"],
         "claim": "Agree",
         "rating": 0
     },
@@ -106,7 +106,7 @@
         "volume": 3,
         "pages": 625,
         "DOI": 1234567890,
-        "SEpractice": "practice_2",
+        "SEpractice": ["practice_2"],
         "claim": "Agree",
         "rating": 0
     }

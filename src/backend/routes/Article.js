@@ -11,7 +11,7 @@ router.get("/search", async (req, res) => {
         const limit = parseInt(req.query.limit) || 20;
         const search = req.query.search || "";
         let sort = req.query.sort || "year";
-        let SEpractice = req.query.practice || "All";
+        let SEpractice = req.query.SEpractice || "All";
 
         const SEpracticeOptions = [
             "practice_1",
@@ -24,7 +24,7 @@ router.get("/search", async (req, res) => {
         
         SEpractice === "All"
             ?(SEpractice = [...SEpracticeOptions])
-            :(SEpractice = req.query.practice.split(","));
+            :(SEpractice = req.query.SEpractice.split(","));
 
         req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
 
@@ -52,6 +52,7 @@ router.get("/search", async (req, res) => {
             total,
             page: page + 1,
             limit,
+            SEpractices: SEpracticeOptions,
             articles
         }
 
