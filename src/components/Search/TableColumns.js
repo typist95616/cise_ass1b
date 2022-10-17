@@ -24,6 +24,9 @@ const tablecolumns = [
     },{
       Header: 'SE Practice',
       accessor: 'SEpractice'
+    },{
+      Header: 'Rating',
+      accessor: 'rating'
     }
   ]
   module.exports = tablecolumns

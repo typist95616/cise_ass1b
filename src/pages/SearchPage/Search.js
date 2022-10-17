@@ -2,6 +2,7 @@ import React from 'react';
 import Table from "../../components/Search/Table.js";
 import tableColumns from "../../components/Search/TableColumns.js";
 import Search from "../../components/Search/Search.js";
+import Sort from "../../components/Search/Sort.js";
 import "./Search.css"
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -37,6 +38,9 @@ function SearchPage() {
             </div>
             <div className="body">
                 <Table columns={tableColumns} data={obj.articles ? obj.articles : []}/>
+            </div>
+            <div className="filter_container">
+                <Sort sort={sort} setSort={(sort) => setSort(sort)}/>
             </div>
         </div>
       )
