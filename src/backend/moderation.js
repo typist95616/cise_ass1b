@@ -22,12 +22,25 @@ if(process.env.NODE_ENV === "production"){
         let result = await processPaper.find({status: "Waiting Moderation"}).toArray();
         for(let row of result){
             const activeResult = await activePaper.findOne({title:row.title});
+            const processResult = await processPaper.find({title: row.title});
             const rejectedResult = await rejectPaper.findOne({title:row.title});        
-            if(activeResult != null || rejectedResult != null){
-                row.existed = true;
+            if(activeResult != null){
+                row.activeExisted = true;
             }else{
-                row.existed = false;
+                row.activeExisted = false;
             }
+            if(rejectedResult != null){
+                row.rejectExisted = true;
+            }else{
+                row.rejectExisted = false;
+            }
+            if(processResult.count() > 1){
+                row.processExisted = true;
+            }else{
+                row.processExisted = false;
+            }
+
+
         }
         res.send(JSON.stringify(result));
         res.end();
@@ -38,7 +51,7 @@ if(process.env.NODE_ENV === "production"){
         processPaper.updateOne(filter, {$set:update})
         .then(result=>{
             console.log("Update success");
-        
+            sendEmail(req.body, "Approved");
         })
         .catch(err=>{
             console.log(err);
@@ -63,13 +76,13 @@ if(process.env.NODE_ENV === "production"){
             res.end();
         })
     })
-    router.post('/rejectPaper', (res, req)=>{
-        processPaper.findOneAndDelete({id:res.body.id})
+    router.post('/rejectArticle', (req, res)=>{
+
+        processPaper.findOneAndDelete({id:req.body.id})
         .then(result=>{
-            console.log("article found");
-            console.log(result.value);
             rejectPaper.insertOne(result.value)
             .then(result=>{
+                sendEmail(req.body, "Rejected");
                 console.log("move to reject paper");
                 console.log(result);
             })
@@ -83,6 +96,37 @@ if(process.env.NODE_ENV === "production"){
     router.get('', (req, res)=>{ 
         res.send("API");
     })
+}
+
+function sendEmail(row, result){
+    var nodemailer = require('nodemailer');
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'waltersiu95616@gmail.com',
+          pass: 'obphtfmkydvjcdmm'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'waltersiu95616@gmail.com',
+        to: row.email,
+        subject: row.title + ' submission result',
+        text:
+        'Title: ' + row.title + '\n' +
+        'SE Practic: ' + row.SEpractice + '\n' +
+        'Claims: ' + row.claims + '\n' +
+        'Result: '+ result + '\n' + 
+        'Thank you for your submission'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 }
 
 module.exports = router;

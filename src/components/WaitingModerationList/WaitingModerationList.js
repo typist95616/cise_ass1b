@@ -63,11 +63,12 @@ class WaitingModerationList extends Component{
 
     rejectPaperRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:5001/moderationList/rejectPaper");
+        xhr.open("POST", "http://localhost:5001/moderationList/rejectArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
         xhr.send(data);
+        alert("Article Rejected");
     }
 
     componentDidMount() {
@@ -117,7 +118,9 @@ class WaitingModerationList extends Component{
                         >
                         <TableCell align="center" component="th" scope="row">
                             {row.title}
-                            {returnTag(row.existed)}
+                            {returnTag(row.activeExisted, "Duplicate record found in Active Database")}
+                            {returnTag(row.rejectExisted, "Duplicated record found in Rejected Database")}
+                            {returnTag(row.rejectExisted, "Duplicated record found in Process Database")}
                         </TableCell>
                         <TableCell align="center">{rednerAuthors(row.authors)}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
@@ -149,9 +152,9 @@ function rednerAuthors(authors){
     return output;
 }
 
-function returnTag(existed){
+function returnTag(existed, text){
     if(existed){
-        return <TagInput name="Existed"/>
+        return <TagInput name = {text}/>
     }
 }
 
