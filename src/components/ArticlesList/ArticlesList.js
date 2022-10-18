@@ -10,8 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
- 
-const axios = require("axios");
+import axios from 'axios';
 
 class ArticlesList extends Component{
 
@@ -26,7 +25,7 @@ class ArticlesList extends Component{
     componentDidMount() {
         this.setState({isLoading:true});
         axios
-          .get('http://localhost:5001/activeArticlesList/articlesList')
+        .get('http://localhost:5001/activeArticlesList/articlesList')
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
