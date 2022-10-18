@@ -1,4 +1,5 @@
 import styles from './styles.module.css';
+import "../../Styles.css";
 
 const Sort = ({ sort, setSort }) => {
 	const onSelectChange = ({ currentTarget: input }) => {

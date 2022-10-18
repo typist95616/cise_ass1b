@@ -4,7 +4,7 @@ const path = require("path");
 const connectDB = require('./config/db');
 const client = require('./config/dbClient');
 const articleRoutes = require('./routes/Article');
-const Article = require('./models/ActiveArticleModel');
+const Article = require('../models/ActiveArticleModel');
 
 //For testing localhost
 const cors = require('cors');

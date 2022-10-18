@@ -5,6 +5,7 @@ import Search from "../../components/Search/Search.js";
 import Sort from "../../components/Search/Sort/Sort.js";
 import Practice from "../../components/Search/SEpractice/SEpractice.js";
 import "./Search.css"
+import "../../components/Styles.css";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -23,7 +24,7 @@ function SearchPage() {
         const newRating = row.original.rating;
         const _id = row.original._id;
         console.log(row.original._id);
-        axios.put(update_url, { newRating: 2, _id: _id })
+        axios.put(update_url, { newRating: 4, _id: _id })
             .then(() => {
                 setRatingChanged(!ratingChanged);
             })

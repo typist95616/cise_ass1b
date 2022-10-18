@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Article = require('../models/ActiveArticleModel');
+const Article = require('../../models/ActiveArticleModel');
 const articles = require('../testData/AcceptedArticlesTest.json');
 const client = require('../config/dbClient');
 const database = client.db("SPEED");

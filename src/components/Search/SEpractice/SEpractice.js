@@ -1,4 +1,5 @@
 import styles from "./styles.module.css";
+import "../../Styles.css";
 
 const SEpractice = ({ SEpractices, filterPractice, setFilterPractice }) => {
 	const onChange = ({ currentTarget: input }) => {

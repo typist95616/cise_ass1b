@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { useTable } from 'react-table';
 import './Table.css';
+import "../../Styles.css";
 
 
 const Table = ({columns, data, onClickRow}) => {
