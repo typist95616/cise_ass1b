@@ -54,6 +54,14 @@ if(process.env.NODE_ENV === "production"){
         res.send("API running");
         console.log("test");
         res.end();
+    
+    app.use(express.static(path.join(__dirname, '../../build/'))); and
+
+    app.get('*', (req, res) => {
+        
+        res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+        
+    })
     })
 }else{
     app.get("/test", (req,res)=>{
