@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const path = require("path");
 dotenv.config({path: path.join(__dirname , '../../../config.env')});
 
-const url = process.env.DatabaseURL;
+const url = "mongodb+srv://jackie:JackieLai@ciseass1b.dcb4ip8.mongodb.net/?retryWrites=true&w=majority";
 
 const connectDB = async () => {
   try {
