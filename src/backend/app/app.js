@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require("path");
-const client = require('./config/dbClient');
+const client = require('../config/dbClient');
 
 //For testing localhost
 const cors = require('cors');
