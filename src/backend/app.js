@@ -20,6 +20,7 @@ connectDB();
 
 const port = process.env.PORT || 5051;
 console.log(process.env.NODE_ENV);
+process.env.NODE_ENV = "production";
 
 app.use('/api', articleRoutes);
 
