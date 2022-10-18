@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  useParams
+} from "react-router-dom";
+import './components/NavBar/NavBar.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import ModerationListComponent from './pages/ModerationListPage/ModerationListPage';
+import RejectedArticlesComponent from './pages/ShowRejectedArticlesPage/ShowRejectedArticlesPage';
+import WaitingArticlesComponent from './pages/WaitingArticlesPage/WaitingArticlesPage';
+import ActiveArticlesListComponent from './pages/ArticlesPage/ArticlesPage';
+import NavBar from './components/NavBar/NavBar';
+
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+
+  return ComponentWithRouterProp;
+}
+
+const ModerationListPage = withRouter(ModerationListComponent);
+const RejectedArticlesPage = withRouter(RejectedArticlesComponent);
+const WaitingAriclesPage = withRouter(WaitingArticlesComponent);
+const ActiveArticlesPage = withRouter(ActiveArticlesListComponent);
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <NavBar/>
+        <Routes>
+          <Route path="/moderationArticlesPage" element = {<ModerationListPage />} />
+          <Route path="/rejectedArticlesPage" element = {<RejectedArticlesPage/>} />
+          <Route path="/waitingArticlesPage" element = {<WaitingAriclesPage/>}/>
+          <Route path="/activeArticlesPage" element={<ActiveArticlesPage/>}/>
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
