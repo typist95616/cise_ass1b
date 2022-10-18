@@ -1,3 +1,6 @@
+import './App.css'
+import SearchPage from "./pages/SearchPage/Search"
+import { Container } from 'react-bootstrap'
 import React, { Component } from 'react';
 import {
   BrowserRouter,
@@ -8,7 +11,6 @@ import {
   useParams
 } from "react-router-dom";
 import './components/NavBar/NavBar.css';
-
 import ModerationListComponent from './pages/ModerationListPage/ModerationListPage';
 import RejectedArticlesComponent from './pages/ShowRejectedArticlesPage/ShowRejectedArticlesPage';
 import WaitingArticlesComponent from './pages/WaitingArticlesPage/WaitingArticlesPage';
@@ -46,6 +48,7 @@ class App extends Component {
           <Route path="/rejectedArticlesPage" element = {<RejectedArticlesPage/>} />
           <Route path="/waitingArticlesPage" element = {<WaitingAriclesPage/>}/>
           <Route path="/activeArticlesPage" element={<ActiveArticlesPage/>}/>
+          <Route path="/search" element={<SearchPage/>}/>
         </Routes>
       </BrowserRouter>
     );

@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const path = require("path");
+const connectDB = require('./config/db');
 const client = require('./config/dbClient');
+const articleRoutes = require('./routes/Article');
+const Article = require('../models/ActiveArticleModel');
 
 //For testing localhost
 const cors = require('cors');
@@ -11,8 +14,37 @@ const corsOptions ={
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-//
 app.use(express.json());
+
+connectDB();
+
+const port = process.env.PORT || 5051;
+console.log(process.env.NODE_ENV);
+
+app.use('/api', articleRoutes);
+
+app.put('/api/update', async (req, res) => {
+    const newRating = req.body.newRating;
+    const _id = req.body._id;
+
+    try {
+        await Article.findById(_id, (error, articleToUpdate) => {
+            articleToUpdate.rating = Number(newRating);
+            articleToUpdate.save();
+            res.send(articleToUpdate);
+        }).clone();
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+if(process.env.NODE_ENV === "production"){
+    //Connect moderation
+    app.use(express.static(path.join(__dirname, '/build')));
+    const moderation = require('./moderation.js');
+    app.use(express.json({ extended: false }));
+    app.use('/moderationList', moderation);
+//
 
 const port = process.env.PORT || 5051;
 console.log(process.env.NODE_ENV);

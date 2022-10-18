@@ -1,0 +1,28 @@
+
+.body {
+	margin-right: 500px;
+	margin-left: 500px;
+}
+
+.head {
+	display: flex;
+	align-content: center;
+	height: 80px;
+	background-color: greenyellow;
+	justify-content: space-between;
+	margin-right: 500px;
+	margin-left: 500px;
+}
+
+.table_container {
+	flex: 3;
+	position: relative;
+	margin-right: 500px;
+	margin-left: 500px;
+}
+
+.filter_container {
+	flex: 1;
+	margin-right: 500px;
+	margin-left: 500px;
+}
