@@ -11,6 +11,7 @@ import {
 import './components/NavBar/NavBar.css';
 import AnalyseListPage from './pages/AnalyseListPage/AnalyseListPage';
 import ModerationList from './pages/ModerationListPage/ModerationListPage';
+import SubmitPage from './pages/SubmitPage/SubmitPage';
 import NavBar from './components/NavBar/NavBar';
 
 function withRouter(Component) {
@@ -39,6 +40,7 @@ class App extends Component {
         <Routes>
           <Route path="/ModerationList" element = {<ModerationListPage />} />
           <Route path="/AnalyseList" element = {<AnalyseListPage />}/>
+          <Route path="/Submit" element = {<SubmitPage />}/>
         </Routes>
       </BrowserRouter>
     );
