@@ -15,6 +15,9 @@ class NavBar extends Component{
                     <Link to={"/activeArticlesPage"}>
                             <li>Articles Pages</li>
                         </Link>
+                        <Link to={'/search'}>
+                            <li>Search</li>
+                        </Link>
                         <Link to={"/waitingArticlesPage"}>
                             <li>Waiting Articles Pages</li>
                         </Link>

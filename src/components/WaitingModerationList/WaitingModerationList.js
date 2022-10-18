@@ -13,7 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TagInput from '../Tag/Tag.js';
  
-const axios = require("axios");
+import axios from 'axios';
 
 class WaitingModerationList extends Component{
 
