@@ -12,7 +12,8 @@ const ArticleSchema = new Schema({
     pages : Number,
     DOI : Number,
     claims : String,
-    SEpractice : [String]
+    SEpractice : [String],
+    rating: Number
 });
 
 const Article = mongoose.model('Article', ArticleSchema, 'Active Paper');

@@ -3,7 +3,7 @@ import { useTable } from 'react-table';
 import './Table.css';
 
 
-const Table = ({columns, data}) => {
+const Table = ({columns, data, onClickRow}) => {
 
   const tableInstance = useTable({
     columns: columns, data: data
@@ -13,7 +13,6 @@ const Table = ({columns, data}) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    footerGroups,
     rows,
     prepareRow
   } = tableInstance;
@@ -36,7 +35,8 @@ const Table = ({columns, data}) => {
             return (
               <tr {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  return <td {...cell.getCellProps()}
+                    onClick={() => {onClickRow(row);}}>{cell.render('Cell')}</td>
                 })}
               </tr>
             )

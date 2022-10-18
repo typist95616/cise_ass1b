@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const base_url = process.env.REACT_APP_API_URL;
+const update_url = process.env.REACT_APP_UPDATE_URL;
 
 function SearchPage() {
     const [obj, setObj] = useState({});
@@ -16,6 +17,17 @@ function SearchPage() {
     const [filterPractice, setFilterPractice] = useState([]);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
+    const [ratingChanged, setRatingChanged] = useState({});
+
+    const onClickRow = (row) => {
+        const newRating = row.original.rating;
+        const _id = row.original._id;
+        console.log(row.original._id);
+        axios.put(update_url, { newRating: 2, _id: _id })
+            .then(() => {
+                setRatingChanged(!ratingChanged);
+            })
+    }
 
     useEffect(() => {
         const getAllArticles = async () => {
@@ -30,7 +42,7 @@ function SearchPage() {
         }};
 
         getAllArticles();
-    }, [sort, filterPractice, page, search]);
+    }, [sort, filterPractice, page, search, ratingChanged]);
 
     return (
         <div>
@@ -38,7 +50,7 @@ function SearchPage() {
                 <Search setSearch={(search) => setSearch(search)}/>
             </div>
             <div className="body">
-                <Table columns={tableColumns} data={obj.articles ? obj.articles : []}/>
+                <Table columns={tableColumns} data={obj.articles ? obj.articles : []} onClickRow={onClickRow}/>
             </div>
             <div className="filter_container">
                 <Sort sort={sort} setSort={(sort) => setSort(sort)}/>

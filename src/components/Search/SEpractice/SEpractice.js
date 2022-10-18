@@ -2,11 +2,9 @@ import styles from "./styles.module.css";
 
 const SEpractice = ({ SEpractices, filterPractice, setFilterPractice }) => {
 	const onChange = ({ currentTarget: input }) => {
-		console.log(input);
 		if (input.checked) {
 			const state = [...filterPractice, input.value];
 			setFilterPractice(state);
-			console.log(state);
 		} else {
 			const state = filterPractice.filter((val) => val !== input.value);
 			setFilterPractice(state);
