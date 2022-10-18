@@ -28,6 +28,11 @@ if(process.env.NODE_ENV === "production"){
     app.use('/moderationList', moderation);
     app.use('/waitingArticlesList', waitingArticlesList);
     app.use('/activeArticlesList', articlesList);
+    app.get("APITesting", (req,res)=>{
+        res.send("API running");
+        console.log("test");
+        res.end();
+    })
 }else{
     app.get("/test", (req,res)=>{
         res.send("API running");
