@@ -44,6 +44,22 @@ if(process.env.NODE_ENV === "production"){
     const moderation = require('./moderation.js');
     app.use(express.json({ extended: false }));
     app.use('/moderationList', moderation);
+//
+
+const port = process.env.PORT || 5051;
+console.log(process.env.NODE_ENV);
+if(process.env.NODE_ENV === "production"){
+    //Connect moderation
+    app.use(express.static(path.join(__dirname, '/build')));
+    const rejectArticles = require('./rejectArticles.js');
+    const moderation = require('./moderation.js');
+    const waitingArticlesList = require('./waitArticlesList.js')
+    const articlesList = require('./articlesList.js');
+    app.use(express.json({ extended: false }));
+    app.use('/rejectArticlesList', rejectArticles);
+    app.use('/moderationList', moderation);
+    app.use('/waitingArticlesList', waitingArticlesList);
+    app.use('/activeArticlesList', articlesList);
 }else{
     app.get("/test", (req,res)=>{
         res.send("API running");
