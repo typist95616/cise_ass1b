@@ -40,7 +40,7 @@ class WaitingModerationList extends Component{
 
     approvePaperRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:5001/moderationList/approveArticle");
+        xhr.open("POST", "moderationList/approveArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);

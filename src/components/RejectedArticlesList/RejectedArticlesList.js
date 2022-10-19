@@ -26,7 +26,7 @@ class RejectedArticlesList extends Component{
     componentDidMount() {
         this.setState({isLoading:true});
         axios
-          .get('http://localhost:5001/rejectArticlesList/rejectedList')
+          .get('rejectArticlesList/rejectedList')
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
