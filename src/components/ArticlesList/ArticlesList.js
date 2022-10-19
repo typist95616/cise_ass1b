@@ -26,6 +26,7 @@ class ArticlesList extends Component{
         this.setState({isLoading:true});
         axios
         .get('activeArticlesList/articlesList')
+
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
