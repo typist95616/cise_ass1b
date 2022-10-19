@@ -20,7 +20,6 @@ connectDB();
 
 const port = process.env.PORT || 5051;
 console.log(process.env.NODE_ENV);
-process.env.NODE_ENV = "production";
 
 app.use('/api', articleRoutes);
 
@@ -41,22 +40,44 @@ app.put('/api/update', async (req, res) => {
 
 if(process.env.NODE_ENV === "production"){
     //Connect moderation
-    app.use(express.static(path.join(__dirname, '/build')));
+    app.use(express.static(path.join(__dirname, '../../build/')));
+
+    //Connect moderation
+
     const rejectArticles = require('./rejectArticles.js');
+
     const moderation = require('./moderation.js');
+
     const waitingArticlesList = require('./waitArticlesList.js')
+
     const articlesList = require('./articlesList.js');
+
     app.use(express.json({ extended: false }));
+
     app.use('/rejectArticlesList', rejectArticles);
+
     app.use('/moderationList', moderation);
+
     app.use('/waitingArticlesList', waitingArticlesList);
+
     app.use('/activeArticlesList', articlesList);
+
     app.get("APITesting", (req,res)=>{
+
         res.send("API running");
+
         console.log("test");
+
         res.end();
+
     })
-}else{
+
+    app.get('*', (req, res) => {
+
+        res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+
+    })
+    } else{
     app.get("/test", (req,res)=>{
         res.send("API running");
         res.end();

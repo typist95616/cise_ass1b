@@ -26,7 +26,7 @@ class WaitingArticlesList extends Component{
     componentDidMount() {
         this.setState({isLoading:true});
         axios
-          .get('http://localhost:5001/waitingArticlesList/articlesList')
+          .get('waitingArticlesList/articlesList')
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
