@@ -21,23 +21,6 @@ connectDB();
 const port = process.env.PORT || 5051;
 console.log(process.env.NODE_ENV);
 
-app.use('/api', articleRoutes);
-
-app.put('/api/update', async (req, res) => {
-    const newRating = req.body.newRating;
-    const _id = req.body._id;
-
-    try {
-        await Article.findById(_id, (error, articleToUpdate) => {
-            articleToUpdate.rating = Number(newRating);
-            articleToUpdate.save();
-            res.send(articleToUpdate);
-        }).clone();
-    } catch (err) {
-        console.log(err);
-    }
-})
-
 if(process.env.NODE_ENV === "production"){
     //Connect moderation
     app.use(express.static(path.join(__dirname, '../../build/')));
@@ -61,6 +44,23 @@ if(process.env.NODE_ENV === "production"){
     app.use('/waitingArticlesList', waitingArticlesList);
 
     app.use('/activeArticlesList', articlesList);
+
+    app.use('/api', articleRoutes);
+
+    app.put('/api/update', async (req, res) => {
+        const newRating = req.body.newRating;
+        const _id = req.body._id;
+
+        try {
+            await Article.findById(_id, (error, articleToUpdate) => {
+                articleToUpdate.rating = Number(newRating);
+                articleToUpdate.save();
+                res.send(articleToUpdate);
+            }).clone();
+        } catch (err) {
+            console.log(err);
+        }
+    })
 
     app.get("APITesting", (req,res)=>{
 
