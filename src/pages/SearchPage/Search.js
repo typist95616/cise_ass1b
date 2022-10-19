@@ -9,8 +9,8 @@ import "../../components/Styles.css";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const base_url = "http://localhost:5001/api/search";
-const update_url = "http://localhost:5001/api/update";
+const base_url = "api/search";
+const update_url = "api/update";
 
 console.log(base_url);
 
