@@ -25,7 +25,7 @@ class ArticlesList extends Component{
     componentDidMount() {
         this.setState({isLoading:true});
         axios
-        .get('http://localhost:5001/activeArticlesList/articlesList')
+        .get('activeArticlesList/articlesList')
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
