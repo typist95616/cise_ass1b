@@ -12,6 +12,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 
+import renderAuthors from './renderAuthors';
+
 class ArticlesList extends Component{
 
     constructor(props){
@@ -70,7 +72,7 @@ class ArticlesList extends Component{
                         <TableCell align="center" component="th" scope="row">
                             {row.title}
                         </TableCell>
-                        <TableCell align="center">{rednerAuthors(row.authors)}</TableCell>
+                        <TableCell align="center">{renderAuthors(row.authors)}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
                         <TableCell align="center">{row.yearOfPublication}</TableCell>
                         <TableCell align="center">{row.volume}</TableCell>
@@ -85,15 +87,6 @@ class ArticlesList extends Component{
                 </TableContainer>
         )
     }
-}
-
-function rednerAuthors(authors){
-    var output = "";
-    for(let i = 0; i < authors.length - 2; i++){
-        output += authors[i] + ", ";
-    }
-    output += authors[authors.length - 1];
-    return output;
 }
 
 export default ArticlesList;
