@@ -40,7 +40,7 @@ class WaitingModerationList extends Component{
 
     approvePaperRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "moderationList/approveArticle");
+        xhr.open("POST", "https://csie-ass1b.herokuapp.com/moderationList/approveArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -63,7 +63,7 @@ class WaitingModerationList extends Component{
 
     rejectPaperRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:5001/moderationList/rejectArticle");
+        xhr.open("POST", "https://csie-ass1b.herokuapp.com//moderationList/rejectArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -74,7 +74,7 @@ class WaitingModerationList extends Component{
     componentDidMount() {
         this.setState({isLoading:true});
         axios
-          .get('http://localhost:5001/moderationList/articlesList')
+          .get('https://csie-ass1b.herokuapp.com//moderationList/articlesList')
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
