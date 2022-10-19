@@ -166,8 +166,5 @@ class WaitingAnalyseList extends Component{
     }
 }
 
-function updateUser(){
-    
-}
 
 export default WaitingAnalyseList;
