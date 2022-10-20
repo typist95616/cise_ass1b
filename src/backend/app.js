@@ -89,30 +89,6 @@ if(process.env.NODE_ENV === "production"){
         })
         res.end();
     })
-
-    // Code from GitHub
-    app.get('/moderationList/articlesList', (req, res)=>{
-        res.setHeader("Content-Type", "application/json");
-        activePaper.find().toArray()
-        .then(result=>{
-            res.send(JSON.stringify(result));
-        })
-        .catch(error=>{
-            console.log(error);
-            res.end();
-        })
-    })
-
-    app.post('/moderationList/insertArticle', (req, res)=>{
-        const doc = req.body;
-        activePaper.insertOne(doc)
-        .then((result)=>{
-            console.log(result);
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    })
 }
 
 if(process.env.NODE_ENV === "production"){
