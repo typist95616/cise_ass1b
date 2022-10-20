@@ -9,8 +9,10 @@ import "../../components/Styles.css";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const base_url = process.env.REACT_APP_API_URL;
-const update_url = process.env.REACT_APP_UPDATE_URL;
+const base_url = "api/search";
+const update_url = "api/update";
+
+console.log(base_url);
 
 function SearchPage() {
     const [obj, setObj] = useState({});
@@ -24,7 +26,7 @@ function SearchPage() {
         const newRating = row.original.rating;
         const _id = row.original._id;
         console.log(row.original._id);
-        axios.put(update_url, { newRating: 4, _id: _id })
+        axios.put(update_url, { newRating: 5, _id: _id })
             .then(() => {
                 setRatingChanged(!ratingChanged);
             })

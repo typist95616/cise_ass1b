@@ -114,8 +114,6 @@ if(process.env.NODE_ENV === "production"){
     //Connect moderation
     app.use(express.static(path.join(__dirname, '../../build/')));
 
-    //Connect moderation
-
     const rejectArticles = require('./rejectArticles.js');
 
     const moderation = require('./moderation.js');
