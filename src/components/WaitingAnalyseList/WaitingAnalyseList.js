@@ -25,7 +25,7 @@ class WaitingAnalyseList extends Component{
 
     componentDidMount() {
         axios
-            .get('http://csie-ass1b.herokuapp.com/getArticles')
+            .get('https://csie-ass1b.herokuapp.com/getArticles')
             .then(this.setState({isLoading: true, label: false}))
             .then(res => {
                 console.log(res)
