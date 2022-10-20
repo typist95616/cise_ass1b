@@ -11,7 +11,7 @@ import '../Tag/Tag.css';
 import TagInput from '../Tag/Tag.js';
 import { Button } from '@mui/material';
 
-const axios = require("axios");
+import axios from 'axios';
 
 class WaitingAnalyseList extends Component{
 
@@ -38,7 +38,7 @@ class WaitingAnalyseList extends Component{
 
     sendRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:5051/moderationList/insertArticle");
+        xhr.open("POST", "http://csie-ass1b.herokuapp.com/moderationList/insertArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
