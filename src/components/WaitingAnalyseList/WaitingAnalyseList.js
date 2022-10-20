@@ -47,7 +47,7 @@ class WaitingAnalyseList extends Component{
 
     componentDidMount() {
         axios
-            .get('http://localhost:5051/getArticles')
+            .get('http://csie-ass1b.herokuapp.com/getArticles')
             .then(this.setState({isLoading: true, label: false}))
             .then(res => {
                 console.log(res)
@@ -74,7 +74,7 @@ class WaitingAnalyseList extends Component{
 
     approveAnalyseRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:5051/approveAnalyse");
+        xhr.open("POST", "http://csie-ass1b.herokuapp.com/approveAnalyse");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -98,7 +98,7 @@ class WaitingAnalyseList extends Component{
 
     rejectAnalyseRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:5051/rejectAnalyse");
+        xhr.open("POST", "http://csie-ass1b.herokuapp.com/rejectAnalyse");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -166,8 +166,5 @@ class WaitingAnalyseList extends Component{
     }
 }
 
-function updateUser(){
-    
-}
 
 export default WaitingAnalyseList;
