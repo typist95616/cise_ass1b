@@ -1,3 +1,4 @@
+import './App.css'
 import React, { Component } from 'react';
 import {
   BrowserRouter,
@@ -12,6 +13,12 @@ import './components/NavBar/NavBar.css';
 import AnalyseListPage from './pages/AnalyseListPage/AnalyseListPage';
 import ModerationList from './pages/ModerationListPage/ModerationListPage';
 import SubmitPage from './pages/SubmitPage/SubmitPage';
+import './components/NavBar/NavBar.css';
+import ModerationListComponent from './pages/ModerationListPage/ModerationListPage';
+import RejectedArticlesComponent from './pages/ShowRejectedArticlesPage/ShowRejectedArticlesPage';
+import WaitingArticlesComponent from './pages/WaitingArticlesPage/WaitingArticlesPage';
+import SearchPage from "./pages/SearchPage/Search"
+import ActiveArticlesListComponent from './pages/ArticlesPage/ArticlesPage';
 import NavBar from './components/NavBar/NavBar';
 
 function withRouter(Component) {
@@ -30,7 +37,10 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-const ModerationListPage = withRouter(ModerationList);
+const ModerationListPage = withRouter(ModerationListComponent);
+const RejectedArticlesPage = withRouter(RejectedArticlesComponent);
+const WaitingAriclesPage = withRouter(WaitingArticlesComponent);
+const ActiveArticlesPage = withRouter(ActiveArticlesListComponent);
 
 class App extends Component {
   render() {
@@ -41,6 +51,11 @@ class App extends Component {
           <Route path="/ModerationList" element = {<ModerationListPage />} />
           <Route path="/AnalyseList" element = {<AnalyseListPage />}/>
           <Route path="/Submit" element = {<SubmitPage />}/>
+          <Route path="/moderationArticlesPage" element = {<ModerationListPage />} />
+          <Route path="/rejectedArticlesPage" element = {<RejectedArticlesPage/>} />
+          <Route path="/waitingArticlesPage" element = {<WaitingAriclesPage/>}/>
+          <Route path="/activeArticlesPage" element={<ActiveArticlesListComponent/>}/>
+          <Route path="/search" element={<SearchPage/>}/>
         </Routes>
       </BrowserRouter>
     );

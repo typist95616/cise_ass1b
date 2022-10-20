@@ -1,4 +1,4 @@
-/* nav{
+nav{
     background-color: #333;
     color: white;
     display: flex;
@@ -12,6 +12,5 @@
 }
 
 body{
-    background-color: greenyellow;
+    background-color: greenyellow !important;
 }
-*/

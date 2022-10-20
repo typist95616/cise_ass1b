@@ -3,12 +3,8 @@ const app = express();
 const path = require("path");
 const connectDB = require('./config/db');
 const client = require('./config/dbClient');
-
-
-const database = client.db("SPEED");
-const activePaper = database.collection("Active Paper");
-const processPaper = database.collection("Process Paper");
-const rejectPaper = database.collection("Rejected Paper");
+const articleRoutes = require('./routes/Article');
+const Article = require('../models/ActiveArticleModel');
 
 //For testing localhost
 const cors = require('cors');
@@ -20,8 +16,6 @@ const corsOptions ={
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-//
-
 app.use(express.json());
 
 connectDB();
@@ -113,31 +107,66 @@ if(process.env.NODE_ENV === "production"){
         .catch(error => {
             console.log(error);
         })
-        res.end();
     })
-    app.get('/moderationList/checkExist/:title', (req,res)=>{
-        const title = req.params.title;
-        rejectPaper.findOne({
-            title: title
-        })
-        .then((output)=>{
-            if(output != null){
-                res.send(true);
-            }else{
-                res.send(false);
-            }
-            res.end();
-        })
-        .catch((error)=>{
-            console.log(error);
-            res.end();
-        })
-    })
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+}
+
+if(process.env.NODE_ENV === "production"){
+    //Connect moderation
+    app.use(express.static(path.join(__dirname, '../../build/')));
+
+    //Connect moderation
+
+    const rejectArticles = require('./rejectArticles.js');
+
+    const moderation = require('./moderation.js');
+
+    const waitingArticlesList = require('./waitArticlesList.js')
+
+    const articlesList = require('./articlesList.js');
+
+    app.use(express.json({ extended: false }));
+
+    app.use('/rejectArticlesList', rejectArticles);
+
+    app.use('/moderationList', moderation);
+
+    app.use('/waitingArticlesList', waitingArticlesList);
+
+    app.use('/activeArticlesList', articlesList);
+
+    app.use('/api', articleRoutes);
+
+    app.put('/api/update', async (req, res) => {
+        const newRating = req.body.newRating;
+        const _id = req.body._id;
+
+        try {
+            await Article.findById(_id, (error, articleToUpdate) => {
+                articleToUpdate.rating = Number(newRating);
+                articleToUpdate.save();
+                res.send(articleToUpdate);
+            }).clone();
+        } catch (err) {
+            console.log(err);
+        }
     })
 
-}else{
+    app.get("APITesting", (req,res)=>{
+
+        res.send("API running");
+
+        console.log("test");
+
+        res.end();
+
+    })
+
+    app.get('*', (req, res) => {
+
+        res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+
+    })
+    } else{
     app.get("/test", (req,res)=>{
         res.send("API running");
         res.end();

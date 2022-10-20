@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './WaitingModerationList.css';
+import './ArticlesList.css';
 import '../Styles.css';
 import '../Tag/Tag.css';
 
-import StyledButton from '../Button/StyledButton.js';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,11 +10,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import TagInput from '../Tag/Tag.js';
- 
 import axios from 'axios';
 
-class WaitingModerationList extends Component{
+class ArticlesList extends Component{
 
     constructor(props){
         super(props);
@@ -25,56 +22,11 @@ class WaitingModerationList extends Component{
         }
     }
 
-    approvePaper(row){
-        var index = -1;
-        var newRows = this.state.rows;
-        for(var x = 0; x < this.state.rows.length; x++){
-            if(this.state.rows[x].id === row.id){
-                index = x;
-            }
-        }
-        newRows.splice(index, 1);
-        this.approvePaperRequest(row);
-        this.setState({rows: newRows});
-    }
-
-    approvePaperRequest(row){
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://csie-ass1b.herokuapp.com/moderationList/approveArticle");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        let data = JSON.stringify(row);
-        xhr.send(data);
-        alert("Article Approved");
-    }
-
-    rejectPaper(row){
-        var index = -1;
-        var newRows = this.state.rows;
-        for(var x = 0; x < this.state.rows.length; x++){
-            if(this.state.rows[x].id === row.id){
-                index = x;
-            }
-        }
-        newRows.splice(index, 1);
-        this.rejectPaperRequest(row);
-        this.setState({rows: newRows});
-    }
-
-    rejectPaperRequest(row){
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://csie-ass1b.herokuapp.com/moderationList/rejectArticle");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        let data = JSON.stringify(row);
-        xhr.send(data);
-        alert("Article Rejected");
-    }
-
     componentDidMount() {
         this.setState({isLoading:true});
         axios
-          .get('https://csie-ass1b.herokuapp.com/moderationList/articlesList')
+        .get('activeArticlesList/articlesList')
+
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
@@ -107,7 +59,6 @@ class WaitingModerationList extends Component{
                         <TableCell align="center">DOI</TableCell>
                         <TableCell align="center">SE practice</TableCell>
                         <TableCell align="center">Claims</TableCell>
-                        <TableCell align="center">Result</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -118,9 +69,6 @@ class WaitingModerationList extends Component{
                         >
                         <TableCell align="center" component="th" scope="row">
                             {row.title}
-                            {returnTag(row.activeExisted, "Duplicate record found in Active Database")}
-                            {returnTag(row.rejectExisted, "Duplicated record found in Rejected Database")}
-                            {returnTag(row.rejectExisted, "Duplicated record found in Process Database")}
                         </TableCell>
                         <TableCell align="center">{rednerAuthors(row.authors)}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
@@ -130,10 +78,6 @@ class WaitingModerationList extends Component{
                         <TableCell align="center">{row.DOI}</TableCell>
                         <TableCell align="center">{row.SEpractice}</TableCell>
                         <TableCell align="center">{row.claims}</TableCell>
-                        <TableCell align="center">
-                            <StyledButton onClick={() => this.approvePaper(row)}>Approve</StyledButton>
-                            <StyledButton onClick={() => this.rejectPaper(row)}>Decline</StyledButton>
-                        </TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
@@ -152,10 +96,4 @@ function rednerAuthors(authors){
     return output;
 }
 
-function returnTag(existed, text){
-    if(existed){
-        return <TagInput name = {text}/>
-    }
-}
-
-export default WaitingModerationList;
+export default ArticlesList;

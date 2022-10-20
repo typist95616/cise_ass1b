@@ -3,11 +3,11 @@ const dotenv = require('dotenv');
 const path = require("path");
 dotenv.config({path: path.join(__dirname , '../../../config.env')});
 
-const url = process.env.DatabaseURL;
+const url = "mongodb+srv://typist95616:Fung54321546@ciseass1b.dcb4ip8.mongodb.net/?retryWrites=true&w=majority";
 
 const connectDB = async () => {
   try {
-    console.log(process.env.DatabaseURL);
+    console.log(url);
     await mongoose.connect(url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
