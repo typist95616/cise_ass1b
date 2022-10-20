@@ -5,6 +5,11 @@ const connectDB = require('./config/db');
 const client = require('./config/dbClient');
 const articleRoutes = require('./routes/Article');
 const Article = require('../models/ActiveArticleModel');
+const database = client.db("SPEED");
+const activePaper = database.collection("Active Paper");
+const processPaper = database.collection("Process Paper");
+const rejectPaper = database.collection("Rejected Paper");
+
 
 //For testing localhost
 const cors = require('cors');

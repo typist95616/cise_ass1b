@@ -23,31 +23,9 @@ class WaitingAnalyseList extends Component{
         }
     }
 
-    insertRecord(row){
-        var index = -1;
-        var newRows = this.state.rows;
-        for(var x = 0; x < this.state.rows.length; x++){
-            if(this.state.rows[x].id === row.id){
-                index = x;
-            }
-        }
-        newRows.splice(index, 1);
-        this.sendRequest(row);
-        this.setState({rows: newRows});
-    }
-
-    sendRequest(row){
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://csie-ass1b.herokuapp.com/moderationList/insertArticle");
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        let data = JSON.stringify(row);
-        xhr.send(data);
-    }
-
     componentDidMount() {
         axios
-            .get('https://csie-ass1b.herokuapp.com/getArticles')
+            .get('http://csie-ass1b.herokuapp.com/getArticles')
             .then(this.setState({isLoading: true, label: false}))
             .then(res => {
                 console.log(res)
