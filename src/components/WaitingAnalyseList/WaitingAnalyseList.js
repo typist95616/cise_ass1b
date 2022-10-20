@@ -38,7 +38,7 @@ class WaitingAnalyseList extends Component{
 
     sendRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://csie-ass1b.herokuapp.com/moderationList/insertArticle");
+        xhr.open("POST", "https://csie-ass1b.herokuapp.com/moderationList/insertArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -47,7 +47,7 @@ class WaitingAnalyseList extends Component{
 
     componentDidMount() {
         axios
-            .get('http://csie-ass1b.herokuapp.com/getArticles')
+            .get('https://csie-ass1b.herokuapp.com/getArticles')
             .then(this.setState({isLoading: true, label: false}))
             .then(res => {
                 console.log(res)
@@ -74,7 +74,7 @@ class WaitingAnalyseList extends Component{
 
     approveAnalyseRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://csie-ass1b.herokuapp.com/approveAnalyse");
+        xhr.open("POST", "https://csie-ass1b.herokuapp.com/approveAnalyse");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -98,7 +98,7 @@ class WaitingAnalyseList extends Component{
 
     rejectAnalyseRequest(row){
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://csie-ass1b.herokuapp.com/rejectAnalyse");
+        xhr.open("POST", "https://csie-ass1b.herokuapp.com/rejectAnalyse");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
