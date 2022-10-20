@@ -40,7 +40,24 @@ class RejectedArticlesList extends Component{
         const {isLoading, rows} = this.state;
         if(isLoading){
             return(
-                <div>It's just loading</div>
+                <TableContainer className='table container'component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell align="center">Title</TableCell>
+                        <TableCell align="center">Authors</TableCell>
+                        <TableCell align="center">Journal</TableCell>
+                        <TableCell align="center">Year Of Publication</TableCell>
+                        <TableCell align="center">Volume</TableCell>
+                        <TableCell align="center">Pages</TableCell>
+                        <TableCell align="center">DOI</TableCell>
+                        <TableCell align="center">SE practice</TableCell>
+                        <TableCell align="center">Claims</TableCell>
+                        <TableCell align="center">Comment</TableCell>
+                    </TableRow>
+                    </TableHead>
+                </Table>
+                </TableContainer>
             )
         }
 
