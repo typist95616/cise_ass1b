@@ -4,6 +4,7 @@ const express = require("express");
 
 const app = express();
 const client = require('./config/dbClient');
+const { ObjectId } = require("mongodb");
 const router = express.Router();
 const database = client.db("SPEED");
 const activePaper = database.collection("Active Paper");
@@ -46,8 +47,7 @@ if(process.env.NODE_ENV === "production"){
         res.end();
     })
     router.post('/approveArticle', (req, res)=>{
-        console.log(req.body);
-        const filter = {_id:req.body._id};
+        const filter = {_id:new ObjectId(req.body._id)};
         const update = {status: "Waiting Analyse"};
         processPaper.updateOne(filter, {$set:update})
         .then(result=>{
@@ -79,7 +79,7 @@ if(process.env.NODE_ENV === "production"){
     })
     router.post('/rejectArticle', (req, res)=>{
 
-        processPaper.findOneAndDelete({_id:req.body._id})
+        processPaper.findOneAndDelete({_id:new ObjectId(req.body._id)})
         .then(result=>{
             rejectPaper.insertOne(result.value)
             .then(result=>{

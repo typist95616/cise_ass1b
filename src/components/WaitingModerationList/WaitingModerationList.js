@@ -29,7 +29,7 @@ class WaitingModerationList extends Component{
         var index = -1;
         var newRows = this.state.rows;
         for(var x = 0; x < this.state.rows.length; x++){
-            if(this.state.rows[x].id === row.id){
+            if(this.state.rows[x]._id === row._id){
                 index = x;
             }
         }
@@ -41,6 +41,7 @@ class WaitingModerationList extends Component{
     approvePaperRequest(row){
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "https://csie-ass1b.herokuapp.com/moderationList/approveArticle");
+        // xhr.open("POST", "http://localhost:5001/moderationList/approveArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -64,6 +65,7 @@ class WaitingModerationList extends Component{
     rejectPaperRequest(row){
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "https://csie-ass1b.herokuapp.com/moderationList/rejectArticle");
+        // xhr.open("POST", "http://localhost:5001/moderationList/rejectArticle");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         let data = JSON.stringify(row);
@@ -75,6 +77,7 @@ class WaitingModerationList extends Component{
         this.setState({isLoading:true});
         axios
           .get('https://csie-ass1b.herokuapp.com/moderationList/articlesList')
+        //   .get('http://localhost:5001/moderationList/articlesList')
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})
