@@ -34,7 +34,7 @@ if(process.env.NODE_ENV === "production"){
             }else{
                 row.rejectExisted = false;
             }
-            if(processResult.count() > 1){
+            if(processResult.countDocuments > 1){
                 row.processExisted = true;
             }else{
                 row.processExisted = false;
