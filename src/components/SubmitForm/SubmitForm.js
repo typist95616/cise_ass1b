@@ -8,6 +8,7 @@ const SubmitForm = () => {
   const onSubmit = (data) =>{ 
     setResult(JSON.stringify(data));
     insertPaper(data);
+    alert("Article Submitted");
 };
 
   return (
@@ -27,8 +28,14 @@ const SubmitForm = () => {
       <p><input {...register("pages")} placeholder="Pages" className="formInput" required/></p>
       <label>DOI</label>
       <p><input {...register("DOI")} placeholder="DOI" className="formInput" required/></p>
-      <label>Claims</label>
-      <p><input {...register("claims")} placeholder="Claims" className="formInput" required/></p>
+
+      <p><select {...register("claims")}>
+        <option value="">Select Claim</option>
+        <option value="Agree">Agree</option>
+        <option value="Disagree">Disagree</option>
+        </select>
+      </p>
+
       <label>Your Email</label>
       <p><input {...register("email")} placeholder="Email" /></p>
      
