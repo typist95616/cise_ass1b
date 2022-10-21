@@ -123,8 +123,8 @@ class WaitingAnalyseList extends Component{
                                 <TableCell align="center">{row.DOI}</TableCell>
                                 <TableCell align="center">
                                     <select>
-                                        <option>Yes</option>
-                                        <option>No</option>
+                                        <option>TDD</option>
+                                        <option>Mob Programming</option>
                                     </select>    
                                 </TableCell>
                                 <TableCell align="center">
