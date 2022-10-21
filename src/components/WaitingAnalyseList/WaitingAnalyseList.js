@@ -12,6 +12,7 @@ import TagInput from '../Tag/Tag.js';
 import { Button } from '@mui/material';
 
 import axios from 'axios';
+import { getValue } from '@testing-library/user-event/dist/utils';
 
 class WaitingAnalyseList extends Component{
 
@@ -52,10 +53,12 @@ class WaitingAnalyseList extends Component{
 
     approveAnalyseRequest(row){
         let xhr = new XMLHttpRequest();
+        var request = row;
         xhr.open("POST", "https://csie-ass1b.herokuapp.com/approveAnalyse");
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
-        let data = JSON.stringify(row);
+        request.SEpractice = getPractice(request);
+        let data = JSON.stringify(request);
         xhr.send(data);
         alert("Article Analyse Approved");
     }
@@ -122,8 +125,8 @@ class WaitingAnalyseList extends Component{
                                 <TableCell align="center">{row.pages}</TableCell>
                                 <TableCell align="center">{row.DOI}</TableCell>
                                 <TableCell align="center">
-                                    <select>
-                                        <option>TDD</option>
+                                    <select id={row._id}>
+                                        <option value="TDD">TDD</option>
                                         <option>Mob Programming</option>
                                     </select>    
                                 </TableCell>
@@ -144,5 +147,8 @@ class WaitingAnalyseList extends Component{
     }
 }
 
+function getPractice(row){
+    return document.querySelector(row._id);
+}
 
 export default WaitingAnalyseList;
