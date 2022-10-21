@@ -54,6 +54,7 @@ if(process.env.NODE_ENV === "production"){
         processPaper.updateOne(filter, {$set:update})
         .then(result=>{
             console.log("updated..");
+            activePaper.insertOne(result.value);
         })
         .catch(err=>{
             console.log(err);
