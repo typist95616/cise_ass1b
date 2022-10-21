@@ -94,7 +94,7 @@ if(process.env.NODE_ENV === "production"){
         })
         processPaper.findOneAndDelete({_id:new ObjectId(req.body._id)})
         .then(result=>{
-            activePaper.insertOne(result.value);
+            activePaper.insertOne(req.body);
         })
         res.end();
     })    
