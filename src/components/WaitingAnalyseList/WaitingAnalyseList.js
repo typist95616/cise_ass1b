@@ -169,7 +169,7 @@ function getPractice(row){
 
 function getClaim(row){
     var selectElement = document.getElementById(row._id + "claims");
-    var output = selectElement.option[selectElement.selectedIndex].value;
+    var output = selectElement.options[selectElement.selectedIndex].value;
     return output;
 }
 
