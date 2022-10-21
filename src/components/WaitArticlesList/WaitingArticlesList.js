@@ -88,7 +88,7 @@ class WaitingArticlesList extends Component{
                         <TableCell align="center" component="th" scope="row">
                             {row.title}
                         </TableCell>
-                        <TableCell align="center">{rednerAuthors(row.authors)}</TableCell>
+                        <TableCell align="center">{row.authors}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
                         <TableCell align="center">{row.yearOfPublication}</TableCell>
                         <TableCell align="center">{row.volume}</TableCell>
@@ -112,13 +112,5 @@ class WaitingArticlesList extends Component{
     }
 }
 
-function rednerAuthors(authors){
-    var output = "";
-    for(let i = 0; i < authors.length - 2; i++){
-        output += authors[i] + ", ";
-    }
-    output += authors[authors.length - 1];
-    return output;
-}
 
 export default WaitingArticlesList;
