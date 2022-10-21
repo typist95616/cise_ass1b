@@ -47,7 +47,7 @@ if(process.env.NODE_ENV === "production"){
     })
     router.post('/approveArticle', (req, res)=>{
         console.log(req.body);
-        const filter = {id:req.body.id};
+        const filter = {_id:req.body._id};
         const update = {status: "Waiting Analyse"};
         processPaper.updateOne(filter, {$set:update})
         .then(result=>{
@@ -79,7 +79,7 @@ if(process.env.NODE_ENV === "production"){
     })
     router.post('/rejectArticle', (req, res)=>{
 
-        processPaper.findOneAndDelete({id:req.body.id})
+        processPaper.findOneAndDelete({_id:req.body._id})
         .then(result=>{
             rejectPaper.insertOne(result.value)
             .then(result=>{
