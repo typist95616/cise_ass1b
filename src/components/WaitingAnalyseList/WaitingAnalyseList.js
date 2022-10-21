@@ -58,8 +58,7 @@ class WaitingAnalyseList extends Component{
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         request.SEpractice = getPractice(request);
-        console.log(getPractice(request));
-        console.log(request);
+        request.claim = getClaim(request);
         let data = JSON.stringify(request);
         xhr.send(data);
         alert("Article Analyse Approved");
@@ -106,6 +105,7 @@ class WaitingAnalyseList extends Component{
                             <TableCell align="right">Pages</TableCell>
                             <TableCell align="right">DOI</TableCell>
                             <TableCell align="right">SE Practice</TableCell>
+                            <TableCell align="right">Claim</TableCell>
                             <TableCell align="right">Comment</TableCell>
                             <TableCell align="right">Analyse</TableCell>
                         </TableRow>
@@ -133,6 +133,17 @@ class WaitingAnalyseList extends Component{
                                         <option>Mob Programming</option>
                                     </select>    
                                 </TableCell>
+                                <TableCell algin="center">
+                                    <select id={row.claim}>
+                                        <option> {row.claim} </option>
+                                        <option>Agree Completely</option>
+                                        <option>Strongly Agree</option>
+                                        <option>Agree</option>
+                                        <option>Disagree</option>
+                                        <option>Strongly Disagree</option>
+                                        <option>Disagree Completely</option>
+                                    </select>
+                                </TableCell>
                                 <TableCell align="center">
                                     <input type="text"/>
                                 </TableCell>
@@ -153,7 +164,12 @@ class WaitingAnalyseList extends Component{
 function getPractice(row){
     var selectElement = document.getElementById(row._id);
     var output = selectElement.options[selectElement.selectedIndex].value;
-    console.log(output);
+    return output;
+}
+
+function getClaim(row){
+    var selectElement = document.getElementById(row.claim);
+    var output = selectElement.option[selectElement.selectedIndex].value;
     return output;
 }
 
