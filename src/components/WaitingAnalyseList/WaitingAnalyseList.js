@@ -134,7 +134,7 @@ class WaitingAnalyseList extends Component{
                                     </select>    
                                 </TableCell>
                                 <TableCell algin="center">
-                                    <select id={row.claim}>
+                                    <select id={row._id + "claims"}>
                                         <option> {row.claims} </option>
                                         <option>Agree Completely</option>
                                         <option>Strongly Agree</option>
@@ -168,7 +168,7 @@ function getPractice(row){
 }
 
 function getClaim(row){
-    var selectElement = document.getElementById(row.claim);
+    var selectElement = document.getElementById(row._id + "claims");
     var output = selectElement.option[selectElement.selectedIndex].value;
     return output;
 }
