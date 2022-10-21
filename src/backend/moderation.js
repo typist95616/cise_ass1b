@@ -46,6 +46,7 @@ if(process.env.NODE_ENV === "production"){
         res.end();
     })
     router.post('/approveArticle', (req, res)=>{
+        console.log(req.body);
         const filter = {id:req.body.id};
         const update = {status: "Waiting Analyse"};
         processPaper.updateOne(filter, {$set:update})
