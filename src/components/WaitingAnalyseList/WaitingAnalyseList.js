@@ -150,7 +150,8 @@ class WaitingAnalyseList extends Component{
 }
 
 function getPractice(row){
-    return document.querySelector(row._id);
+    console.log(row._id);
+    return document.querySelector('#' + row._id);
 }
 
 export default WaitingAnalyseList;
