@@ -95,7 +95,13 @@ class WaitingArticlesList extends Component{
                         <TableCell align="center">{row.pages}</TableCell>
                         <TableCell align="center">{row.DOI}</TableCell>
                         <TableCell align="center">{row.SEpractice}</TableCell>
-                        <TableCell align="center">{row.claims}</TableCell>
+                        <TableCell align="center">
+                            <select {...register("claims")}>
+                                <option value="${row.claim}">{row.claim}</option>
+                                <option value="Agree">Agree</option>
+                                <option value="Disagree">Disagree</option>
+                            </select>
+                        </TableCell>
                         <TableCell align="center">{row.status}</TableCell>
                         </TableRow>
                     ))}
