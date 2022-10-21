@@ -35,6 +35,7 @@ if(process.env.NODE_ENV === "production"){
             }else{
                 row.rejectExisted = false;
             }
+            res.send(processResult);
             if(processResult.length > 1){
                 row.processExisted = true;
             }else{
