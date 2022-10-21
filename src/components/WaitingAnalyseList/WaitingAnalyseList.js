@@ -128,7 +128,8 @@ class WaitingAnalyseList extends Component{
                                 <TableCell align="center">{row.DOI}</TableCell>
                                 <TableCell align="center">
                                     <select id={row._id}>
-                                        <option value="TDD">TDD</option>
+                                        <option> {row.SEpractice} </option>
+                                        <option>TDD</option>
                                         <option>Mob Programming</option>
                                     </select>    
                                 </TableCell>
