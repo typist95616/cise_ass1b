@@ -29,6 +29,7 @@ const SubmitForm = () => {
       <label>DOI</label>
       <p><input {...register("DOI")} placeholder="DOI" className="formInput" required/></p>
 
+      <label>Claim</label>
       <p><select {...register("claims")}>
         <option value="">Select Claim</option>
         <option value="Agree">Agree</option>
