@@ -88,7 +88,7 @@ class ArticlesList extends Component{
                         <TableCell align="center" component="th" scope="row">
                             {row.title}
                         </TableCell>
-                        <TableCell align="center">{renderAuthors(row.authors)}</TableCell>
+                        <TableCell align="center">{row.authors}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
                         <TableCell align="center">{row.yearOfPublication}</TableCell>
                         <TableCell align="center">{row.volume}</TableCell>
