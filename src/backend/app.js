@@ -29,10 +29,44 @@ connectDB();
 const port = process.env.PORT || 5051;
 console.log(process.env.NODE_ENV);
 process.env.NODE_ENV = "production";
+
 if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname, '/public')));
-    app.get("/APITesting", (req,res)=>{
-        res.send("API running")
+    //Connect moderation
+    app.use(express.static(path.join(__dirname, '../../build/')));
+
+    const rejectArticles = require('./rejectArticles.js');
+
+    const moderation = require('./moderation.js');
+
+    const waitingArticlesList = require('./waitArticlesList.js')
+
+    const articlesList = require('./articlesList.js');
+
+    app.use(express.json({ extended: false }));
+
+    app.use('/rejectArticlesList', rejectArticles);
+
+    app.use('/moderationList', moderation);
+
+    app.use('/waitingArticlesList', waitingArticlesList);
+
+    app.use('/activeArticlesList', articlesList);
+
+    app.use('/api', articleRoutes);
+
+    app.put('/api/update', async (req, res) => {
+        const newRating = req.body.newRating;
+        const _id = req.body._id;
+
+        try {
+            await Article.findById(_id, (error, articleToUpdate) => {
+                articleToUpdate.rating = Number(newRating);
+                articleToUpdate.save();
+                res.send(articleToUpdate);
+            }).clone();
+        } catch (err) {
+            console.log(err);
+        }
     })
 
     // Code for analyse
@@ -93,46 +127,6 @@ if(process.env.NODE_ENV === "production"){
             console.log(err);
         })
         res.end();
-    })
-}
-
-if(process.env.NODE_ENV === "production"){
-    //Connect moderation
-    app.use(express.static(path.join(__dirname, '../../build/')));
-
-    const rejectArticles = require('./rejectArticles.js');
-
-    const moderation = require('./moderation.js');
-
-    const waitingArticlesList = require('./waitArticlesList.js')
-
-    const articlesList = require('./articlesList.js');
-
-    app.use(express.json({ extended: false }));
-
-    app.use('/rejectArticlesList', rejectArticles);
-
-    app.use('/moderationList', moderation);
-
-    app.use('/waitingArticlesList', waitingArticlesList);
-
-    app.use('/activeArticlesList', articlesList);
-
-    app.use('/api', articleRoutes);
-
-    app.put('/api/update', async (req, res) => {
-        const newRating = req.body.newRating;
-        const _id = req.body._id;
-
-        try {
-            await Article.findById(_id, (error, articleToUpdate) => {
-                articleToUpdate.rating = Number(newRating);
-                articleToUpdate.save();
-                res.send(articleToUpdate);
-            }).clone();
-        } catch (err) {
-            console.log(err);
-        }
     })
 
     app.get("APITesting", (req,res)=>{
