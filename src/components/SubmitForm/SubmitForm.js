@@ -32,8 +32,12 @@ const SubmitForm = () => {
       <label>Claim</label>
       <p><select {...register("claims")}>
         <option value="">Select Claim</option>
+        <option value="Agree Completely">Agree Completely</option>
+        <option value="Strongly Agree">Strongly Agree</option>
         <option value="Agree">Agree</option>
         <option value="Disagree">Disagree</option>
+        <option value="Strongly Disagree">Strongly Disagree</option>
+        <option value="Disagree Completely">Disagree Completely</option>
         </select>
       </p>
 
