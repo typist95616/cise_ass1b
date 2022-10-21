@@ -150,8 +150,10 @@ class WaitingAnalyseList extends Component{
 }
 
 function getPractice(row){
-    console.log(row._id);
-    return document.querySelector('#' + row._id);
+    selectElement = document.querySelector('#' + row._id);
+    output = selectElement.options[selectElement.selectedIndex].value;
+    console.log(output);
+    return output;
 }
 
 export default WaitingAnalyseList;
