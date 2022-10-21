@@ -140,7 +140,7 @@ class WaitingModerationList extends Component{
                             {row.title}
                             {returnTag(row.activeExisted, "Duplicate record found in Active Database")}
                             {returnTag(row.rejectExisted, "Duplicated record found in Rejected Database")}
-                            {returnTag(row.rejectExisted, "Duplicated record found in Process Database")}
+                            {returnTag(row.processExisted, "Duplicated record found in Process Database")}
                         </TableCell>
                         <TableCell align="center">{row.authors}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>

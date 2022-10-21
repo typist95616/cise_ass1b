@@ -23,7 +23,7 @@ if(process.env.NODE_ENV === "production"){
         let result = await processPaper.find({status: "Waiting Moderation"}).toArray();
         for(let row of result){
             const activeResult = await activePaper.findOne({title:row.title});
-            const processResult = await processPaper.find({title: row.title});
+            const processResult = await processPaper.find({title: row.title}).toArray();
             const rejectedResult = await rejectPaper.findOne({title:row.title});        
             if(activeResult != null){
                 row.activeExisted = true;
@@ -41,8 +41,6 @@ if(process.env.NODE_ENV === "production"){
             }else{
                 row.processExisted = false;
             }
-
-
         }
         res.send(JSON.stringify(result));
         res.end();
