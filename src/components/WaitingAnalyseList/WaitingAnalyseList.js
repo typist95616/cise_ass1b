@@ -61,7 +61,7 @@ class WaitingAnalyseList extends Component{
         console.log(getPractice(request));
         console.log(request);
         let data = JSON.stringify(request);
-        xhr.send(data);
+        // xhr.send(data);
         alert("Article Analyse Approved");
     }
 
