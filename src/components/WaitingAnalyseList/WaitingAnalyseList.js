@@ -58,7 +58,7 @@ class WaitingAnalyseList extends Component{
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Content-Type", "application/json");
         request.SEpractice = getPractice(request);
-        request.claim = getClaim(request);
+        request.claims = getClaim(request);
         let data = JSON.stringify(request);
         xhr.send(data);
         alert("Article Analyse Approved");
