@@ -54,10 +54,13 @@ if(process.env.NODE_ENV === "production"){
         processPaper.updateOne(filter, {$set:update})
         .then(result=>{
             console.log("updated..");
-            activePaper.insertOne(result.value);
         })
         .catch(err=>{
             console.log(err);
+        })
+        processPaper.findOneAndDelete({_id:new ObjectId(req.body._id)})
+        .then(result=>{
+            activePaper.insertOne(result.value);
         })
         res.end();
     })    
