@@ -135,7 +135,7 @@ class WaitingAnalyseList extends Component{
                                 </TableCell>
                                 <TableCell algin="center">
                                     <select id={row.claim}>
-                                        <option> {row.claim} </option>
+                                        <option> {row.claims} </option>
                                         <option>Agree Completely</option>
                                         <option>Strongly Agree</option>
                                         <option>Agree</option>
