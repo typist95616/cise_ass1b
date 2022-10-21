@@ -26,7 +26,7 @@ class WaitingArticlesList extends Component{
     componentDidMount() {
         this.setState({isLoading:true});
         axios
-          .get('waitingArticlesList/articlesList')
+          .get('https://csie-ass1b.herokuapp.com/waitingArticlesList/articlesList')
           .then(res => {
             console.log(res.data)
             this.setState({rows: res.data})})

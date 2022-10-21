@@ -142,7 +142,7 @@ class WaitingModerationList extends Component{
                             {returnTag(row.rejectExisted, "Duplicated record found in Rejected Database")}
                             {returnTag(row.rejectExisted, "Duplicated record found in Process Database")}
                         </TableCell>
-                        <TableCell align="center">{rednerAuthors(row.authors)}</TableCell>
+                        <TableCell align="center">{row.authors}</TableCell>
                         <TableCell align="center">{row.journal}</TableCell>
                         <TableCell align="center">{row.yearOfPublication}</TableCell>
                         <TableCell align="center">{row.volume}</TableCell>
@@ -161,15 +161,6 @@ class WaitingModerationList extends Component{
                 </TableContainer>
         )
     }
-}
-
-function rednerAuthors(authors){
-    var output = "";
-    for(let i = 0; i < authors.length - 2; i++){
-        output += authors[i] + ", ";
-    }
-    output += authors[authors.length - 1];
-    return output;
 }
 
 function returnTag(existed, text){
